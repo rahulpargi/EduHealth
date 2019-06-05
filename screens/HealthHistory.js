@@ -48,7 +48,7 @@ export default class HealthHistory extends Component {
         <Header>
           <Left>
             <Button transparent>
-              <Icon name="menu" />
+              <Icon name="menu" onPress={()=>this.props.navigation.openDrawer()} />
             </Button>
           </Left>
           <Body>
