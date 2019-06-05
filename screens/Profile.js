@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Text, StyleSheet, Platform, ScrollView ,View} from "react-native";
+import { Text, StyleSheet, Platform, ScrollView, View } from "react-native";
 import {
   Container,
   Header,
@@ -18,13 +18,17 @@ import {
   H3,
   Dimensions
 } from "native-base";
-
+import {
+  createDrawerNavigator,
+  createAppContainer,
+  DrawerItems,
+  SafeAreaView
+} from "react-navigation";
 import { Col, Row, Grid } from "react-native-easy-grid";
 import { Font } from "expo";
 import { Ionicons } from "@expo/vector-icons";
 import { AppLoading } from "expo";
 import DataTable from "../components/DataTable";
-
 
 export default class Profile extends Component {
   constructor(props) {
@@ -48,10 +52,10 @@ export default class Profile extends Component {
     }
 
     return (
-      <Container style={{backgroundColor:'#dcdcdc'}}>
+      <Container style={{ backgroundColor: "#dcdcdc" }}>
         <Header>
           <Left>
-            <Button transparent>
+            <Button transparent onPress={() => openDrawer()}>
               <Icon name="menu" />
             </Button>
           </Left>
@@ -61,7 +65,7 @@ export default class Profile extends Component {
           <Right />
         </Header>
         <ScrollView>
-          <Content style={{margin:10}}>
+          <Content style={{ margin: 10 }}>
             <Grid>
               <Row style={styles.avatarContainer}>
                 <Thumbnail
@@ -72,21 +76,17 @@ export default class Profile extends Component {
                       "https://s3.amazonaws.com/uifaces/faces/twitter/ladylexy/128.jpg"
                   }}
                 />
-                
               </Row>
-              <Row
-                style={{ justifyContent: "center", alignItems: "center" }}
-              >
+              <Row style={{ justifyContent: "center", alignItems: "center" }}>
                 <H3 style={{ color: "rgba(0,0,0,0.5)" }}>Sara Evans</H3>
               </Row>
-              <Row  style={{
-                    
-                    justifyContent: "flex-end",
-                    alignItems: "center"
-                  }}>
-              
-                  <Icon type="FontAwesome" name="edit" />
-                
+              <Row
+                style={{
+                  justifyContent: "flex-end",
+                  alignItems: "center"
+                }}
+              >
+                <Icon type="FontAwesome" name="edit" />
               </Row>
               <ListItem
                 itemDivider
@@ -98,7 +98,7 @@ export default class Profile extends Component {
               >
                 <H2>Student Information</H2>
               </ListItem>
-              
+
               <Row style={styles.cardContainer}>
                 <Card style={styles.card}>
                   <CardItem header bordered>
@@ -168,7 +168,26 @@ export default class Profile extends Component {
                 <H2>Student Health</H2>
               </ListItem>
               <Row>
-                <DataTable />
+                <DataTable
+                  tableHead={
+                    ["Condition", "Notes"]
+                  }
+                  tableData={
+                    [
+                      ["Physician","Albert Hall"],
+                      ["Dentist"],
+                      ["Diabetes"],
+                      ["Benadryl"],
+                      ["Ashtma"],
+                      ["Allergies"],
+                      ["Surgery"]
+                      ["Pnuemonia"],
+                      ["Sutures Stitches"],
+                      ["Hospitaliation"]
+
+                    ]
+                }
+                />
               </Row>
             </Grid>
           </Content>
@@ -192,7 +211,6 @@ const styles = StyleSheet.create({
   cardContainer: {
     flex: 1,
 
-     
     height: 350,
     justifyContent: "space-around",
     alignItems: "center",
@@ -203,7 +221,7 @@ const styles = StyleSheet.create({
   card: {
     height: 100,
     width: 150,
-  
+
     shadowOffset: { width: 0, height: 0 },
     shadowColor: "black",
     shadowOpacity: 0.2,

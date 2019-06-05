@@ -36,8 +36,13 @@ export default class LoginScreen extends Component {
               />
               <Button
                 buttonStyle={styles.loginButton}
-                onPress={() => console.log("pressed")}
+                onPress={() =>this.props.navigation.navigate("Profile")}
                 title="Login"
+              />
+              <Button
+                buttonStyle={styles.loginButton}
+                onPress={() => this.props.navigation.navigate("Register")}
+                title="Register"
               />
               
             </View>

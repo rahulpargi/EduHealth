@@ -72,7 +72,7 @@ export default class RegisterScreen extends Component{
                     
                     <Button
                       buttonStyle={styles.loginButton}
-                      onPress={() => this.props.navigation.navigate('Profile')}
+                      onPress={() => this.props.navigation.navigate('Login')}
                       title="Register"
                     />
                   </View>
@@ -120,7 +120,7 @@ const styles = StyleSheet.create({
         backgroundColor: '#3897f1',
         borderRadius: 5,
         height: 45,
-        marginTop: 10,
+        marginTop: 15,
       },
       fbLoginButton: {
         height: 45,
